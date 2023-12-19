@@ -1,4 +1,4 @@
-# 一个简单的python绘图，辅助理解神经网络算法
+# 一个简单的python绘图，辅助理解relu激活函数增强函数的非线性
 
 import numpy as np
 import matplotlib.pyplot as plt
