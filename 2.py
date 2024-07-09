@@ -14,3 +14,4 @@ print("原始输入:")
 print(input)
 print("批量归一化后的输出:")
 print(output)
+xxxx
