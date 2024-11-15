@@ -1,2 +1,2 @@
-#import d
-print(__package__)
+from g import *
+print(b)
