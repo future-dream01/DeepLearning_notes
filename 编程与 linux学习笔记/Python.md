@@ -11,16 +11,23 @@
 1. 脚本(Script)：通常是具有完整的执行逻辑，可以单独实现完整或部分功能的程序文件
    - 特征：往往包含`if __name__==__main:`这样的语句，表示只有这个脚本被单独执行时，才会执行下面的逻辑任务。这是为了使得这个脚本既能够单独作为一个脚本执行，也可以作为一个模块将其中定义的函数、变量、类等被其他程序引用，提高脚本的可重复利用性。
 2. 模块(Module)：通常是定义了很多函数、变量、类，主要用来被其他脚本或模块调用的程序文件
-3. 包(Package)：
+3. 包(Package)：包含python模块和脚本文件
+   - python包的重要标志是包内含有**__init__.py**文件，这表明
 4. 库(Library)：由模块和包构成，在所针对的功能上更加具有完整性，可以分为**标准库**和**第三方库**
    1. 标准库：是 python 内置的一些模块和包，分为**内置模块**和**纯 Python 模块和包**
       - 内置模块：是最常用的一些 python 模块，由 C编写，**直接编译进了解释器**，以实现最高的使用效率，包含：sys、os、time、math等，
       - 纯 Python 模块和包：较常用的模块和包，由 python 编写，被存放在该 python环境所在文件夹的**lib/python3.x**路径下
    2. 第三方库：后期用户自行下载安装的 python 库，被存放在**lib/python3.x/site-packages**路径下，如通过pip 和 conda 下载安装的库
 5. 关于脚本、模块、包、库的导入
+   1. 绝对导入    
+   2. 相对导入：特征为出现`.A`或`..A`等，作用是避免自己的包内的某个模块和sys.path所有路径中的已有模块发生名称冲突
+      - .表示当前目录，..表示上级目录，以此类推
+      - 此时python**不会在内置模块和sys.path中查找A**,
    - `import B`：
-     - 首先，B 可以是**库、包、模块**，当执行 import 指令时，程序会依次在**内置模块**、**sys.path** 列表中查找目标，其中sys.path列表形状是['','/Users/liuquan/anaconda3/envs/tf/lib/python39.zip','/Users/liuquan/anaconda3/envs/tf/lib/python3.9','/Users/liuquan/anaconda3/envs/tf/lib/python3.9/lib-dynload','/Users/liuquan/anaconda3/envs/tf/lib/python3.9/site-packages'],分别表示**当前程序所在目录**、**当前python 环境标准库的 zip 压缩文件**、**当前python 环境标准库**、**当前python 环境动态链接库**、**当前python 环境第三方库**
-   
+     - 首先，B 可以是**库、包、模块**，不可以是类、变量、函数
+     - 当执行 import 指令时，程序会依次在**内置模块**、**sys.path** 列表中查找目标，其中sys.path列表形状是['','/Users/liuquan/anaconda3/envs/tf/lib/python39.zip','/Users/liuquan/anaconda3/envs/tf/lib/python3.9','/Users/liuquan/anaconda3/envs/tf/lib/python3.9/lib-dynload','/Users/liuquan/anaconda3/envs/tf/lib/python3.9/site-packages'],分别表示**当前程序所在目录**、**当前python 环境标准库的 zip 压缩文件**、**当前python 环境标准库**、**当前python 环境动态链接库**、**当前python 环境第三方库**
+   - `from A import B`
+
 
 6. 在索引和切片操作中，`:`表示在对应维度上选择所有元素
 7. 有关类：

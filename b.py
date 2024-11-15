@@ -1,1 +1,1 @@
-c=1
+from q import a
