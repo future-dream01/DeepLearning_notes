@@ -149,11 +149,15 @@
 5. 常用的第三方库：
    - **Matplotlib** ：常用的绘图库
      - pyplot模块：
-       - `plot(x,y,label,color,linestyle,marker)`:绘制二维曲线；**x**为存放x轴数据的列表，**y**为存放y轴数据的列表，**label**是对这根曲线的命名,**color**为线的颜色，可指定'r'、'g'、'b'，**linestyle**为线形,'-'为实线，'--'为虚线，**marker**指定数据点的形状，'o'为圆点，'s'为方块
+       - `subplot(row,col,id)`:在一个图形窗口中创建多个子图，**row**、**col**分别是子图排列的行数和列数，**id**为此子图的id
+       - `plot(x,y,label,color=None,linestyle='-',marker='o')`:绘制二维曲线；**x**为存放x轴数据的列表，**y**为存放y轴数据的列表，(其实也可以只输入一个列表数据，此时plot内部自动将输入列表作为y值，以数据索引为x轴)**label**是对这根曲线的命名,**color**为线的颜色，可指定'r'、'g'、'b'，**linestyle**为线形,'-'为实线，'--'为虚线，**marker**指定数据点的形状，'o'为圆点，'s'为方块
+       - `scatter(x,y,label,color=None,marker='o')`:绘制散点图，**x**为存放x轴数据的列表，**y**为存放y轴数据的列表，(这里注意和plot区分：此处必须指定x和y两者，否则无法绘制)**label**是对这根曲线的命名,**color**为线的颜色，可指定'r'、'g'、'b'，**marker**指定数据点的形状，'o'为圆点，'s'为方块
+       - `hist(x,bins,range=(min,max),density=False,cumulative=False,color=None,edgecolor=None,alpha=None)`：绘制直方图，**x**:输入列表,**bins**：箱的数量，当指定数字时，表示将数据分成几个部分，当指定列表[a,b,c,d,e]时，表示将数据按照[a,b]、[b,c]、[c,d]、[d,e]分组,**range**表示接受的数据范围,形状是一个元组(x,y),表示只有这个范围内的数据才会被包含在直方图内,**density**表示是否绘制频率密度分布，True为是，False为否,**cumulative**表示是否绘制累计直方图，True为是，False为否,**color**为直方图颜色,**edgecolor**为直方图边缘颜色,**alpha**为直方图透明度
        - `title(label)`:图像标题
        - `xlabel(label)`:x轴的标签
        - `ylabel(label)`:y轴的标签
        - `legend()`:显示图例
+       - `tight_layout()`:自动调整子图间距，使其排列均匀
        - `show()`显示图像
        - `savefig(path)`：输入图像的绝对路径，即可在相应目录路径下保存该文件名的图片。
 6. 错误与异常
