@@ -1,11 +1,12 @@
 # pytorch 框架
+关于 pytorch：pytorch 是 torch 开放的 python 接口，两者均由 Facebook 的人工智能小组开发，是开源的深度学习框架，特点是灵活且高效
 ## 数据集准备
-1. 总述：对于 pytorch 模型训练，需要先将训练的数据(图片或矩阵)进行打包，创建一个数据集对象，使其包含这个数据集合，之后再利用这个数据集对象创建一个数据加载器对象，负责一个批次一个批次地向模型推送数据和对应标签
+1. 总述：pytorch 模型训练中数据流如下：先将训练的数据(图片或矩阵)进行打包，创建一个**Dataset 类数据集对象** >>> 利用这个数据集对象创建一个 **Dataloader类数据加载器对象** >>> 使用数据加载器类对象迭代产生训练数据
 2. **Dataset类**数据集创建器：
    - 导入：`from torch.utils.data import Dataset`
    - 使用方法：
-      - 使用预定义的Dataset：
-         - `dataset=Dataset(path/to/your/datasets)`：直接创建一个数据集对象，将数据集路径参数传递给Dataset
+      - 关于 pytorch 中预先定义的 Dataset 抽象类：
+         - pytorch中的数据集本质上是一个处理索引到具体样本之间映射的类，内部不复杂
       - 对Datasets做自己的修改：
 
 3. **Dataloader类**数据加载器：
@@ -16,12 +17,12 @@
       - **shuffle**：是否数据洗牌，即每个 epoch 开始时是否将数据集中的数据打乱，Ture/Falth
       - **num_workers**： 数据加载时使用的进程数
   
-## 模型结构定义
+## 模型搭建
 1. 总述：pytorch 的核心即预定义好了一系列网络核心构件，可以让使用者像搭积木一样拼接网络，所有包含在模型通路中的组件，都需要是 `Module`子类，这样才可以被参数更新
-2. 有关模块：
-   - **nn**: 神经网络模型模块
-      - 导入：`import torch.nn`
-      - 使用方法：
+2. 有关模块
+   - **神经网络模型**模块
+      1. 导入：`import torch.nn`
+         - 使用方法：
          - `class Name(nn.Module):`:在父类基础上继承自己的模型子类
          - `super(Name,self).__init__()`：初始化父类
          - 模块中预定义的**卷积层**：
@@ -30,7 +31,7 @@
                - out_channels:输出通道数
                - kernel_size：卷积核大小
                - stride：卷积步长
-            - `nn.ConvTranspose2d(in_channels, out_channels, kernel_size, stride, padding, output_padding)`: 二维转置卷积层，用于图像数据的上采样，常见于生成对抗网络（GANs）
+            - `nn.ConvTranspose2d(in_channels, out_channels, kernel_size,stride, padding, output_padding)`: 二维转置卷积层，用于图像数据的上采样,常见于生成对抗网络（GANs）
                - in_channels:
                - out_channels:
                - kernel_size:
@@ -38,7 +39,7 @@
                - padding:
                - output_padding:
             - `nn.DepthwiseConv2d`: 深度可分离二维卷积层，其中每个输入通道被单独卷积。
-               - 
+               - 2
             - `nn.GroupConv2d`: 分组卷积层，它将输入和输出通道分成多组，以减少参数数量和计算量。
          - 模块中预定义的**批量归一化层**：
             - `nn.BatchNorm2d(in_channels)`:批量归一化，对当前批次中的特征图中特征值进行归一化

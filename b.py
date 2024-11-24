@@ -1,6 +1,6 @@
 import math,random
 import matplotlib.pyplot as plt
-
+import torch
 def draw_before(data):
     sum1=sum(data)
     len1=len(data)
