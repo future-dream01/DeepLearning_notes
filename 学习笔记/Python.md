@@ -282,5 +282,10 @@
        - `logger.warning("这是一个警告日志")`
        - `logger.error("这是一个错误日志")`
        - `logger.critical("这是一个严重错误日志")`
+   - **sympy**：方程求解库
+     - `symbols(name,real=None,positive=None)`:用于定义变量的函数，返回一个变量对象，**name**:表示变量名，**real**:表示是否为一定是实数，**positive**:表示是否一定是正数
+     - `Eq(,)`:是一个定义方程对象的类，返回一个可求解的方程对象，输入参数分别是等式的两边
+     - `solve(equation_name，variables_name)`：解析求解函数，用于获取解析解，返回包含所有符号解的列表，**equation_name**：之前定义好的方程对象
+     - `nsolve(equation_name,variables_name,Initial)`：数值求解函数，用于获取数值解，只返回一个解，且与迭代初值相关**equation_name**：之前定义好的方程对象，**variables_name**:变量对象，**Initial**：迭代初值
 6. 错误与异常  
 
