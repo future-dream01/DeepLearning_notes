@@ -3,7 +3,7 @@ import math
 
 plist=[320083,304292,285660,263307,243037,218087,199698,158401]
 flist=[]
-lamda=[0.66470534]
+lamda=[0.485771612356063534]
 for i in range(0,len(plist)-1):
     lamda2=symbols('lamda2',positive=True)
     equation1=Eq(plist[i+1]/plist[i],(lamda[i]/lamda2)*((2.4-0.4*lamda2**2)/(2.4-0.4*lamda[i]**2)))
