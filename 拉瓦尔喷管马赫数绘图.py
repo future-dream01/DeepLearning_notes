@@ -31,13 +31,25 @@ for value in list4:
     MA4.append(out)
 
 pl.plot(pointlist,MA1,label=f"{env_list[0]} Pa",color='red',linestyle='-',marker='o')
-pl.plot(pointlist,MA2,label=f"{env_list[1]} Pa",color='blue',linestyle='-',marker='o')
-pl.plot(pointlist,MA3,label=f"{env_list[2]} Pa",color='green',linestyle='-',marker='o')
-pl.plot(pointlist,MA4,label=f"{env_list[3]} Pa",color='orange',linestyle='-',marker='o')
+pl.plot(pointlist,MA2,label=f"{env_list[1]} Pa",color='blue',linestyle='-',marker='s')
+pl.plot(pointlist,MA3,label=f"{env_list[2]} Pa",color='green',linestyle='-',marker='*')
+pl.plot(pointlist,MA4,label=f"{env_list[3]} Pa",color='orange',linestyle='-',marker='v')
 pl.title("Mach number distribution")
 pl.xlabel("point")
 pl.ylabel("MA")
 pl.legend()
 pl.savefig("1.jpg")
+
+pl.clf()
+
+pl.plot(pointlist,list1,label=f"{env_list[0]} Pa",color='red',linestyle='-',marker='o')
+pl.plot(pointlist,list2,label=f"{env_list[1]} Pa",color='blue',linestyle='-',marker='s')
+pl.plot(pointlist,list3,label=f"{env_list[2]} Pa",color='green',linestyle='-',marker='*')
+pl.plot(pointlist,list4,label=f"{env_list[3]} Pa",color='orange',linestyle='-',marker='v')
+pl.title("Relative distributed pressure")
+pl.xlabel("point")
+pl.ylabel("pressure")
+pl.legend()
+pl.savefig("2.jpg")
 pl.show()
 
