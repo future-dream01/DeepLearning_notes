@@ -226,28 +226,78 @@
       - **with**
       - **match**
 3. 类
-   - 地位：类，体现了编程领域的重要思想：**面向对象编程**，遵循这一思想，类本质是定义了一类**对象**可以具有的**属性**和可以使用的**方法**的代码块，其在面向过程编程的基础之上，将问题的解决转而以对象为中心，将任务拆分并分配给了功能不同的各类对象，各自解决，随着我们对类内属性和方法的补充，每类对象功能越来越完整，可以完成的任务越来越专一、复杂，就可以越来越好的完成我们分配给他的任务，这样，问题就会更容易解决。
+   - 地位：类，体现了编程领域的重要思想：**面向对象编程**，遵循这一思想，类本质是定义了一类**实例对象**可以具有的**属性**和可以使用的**方法**的代码块，其在面向过程编程的基础之上，将问题的解决转而以对象为中心，将任务拆分并分配给了功能不同的各类对象，各自解决，随着我们对类内属性和方法的补充，每类实例对象功能越来越完整，可以完成的任务越来越专一、复杂，就可以越来越好的完成我们分配给他的任务，这样，问题就会更容易解决。
    - 结构：
      - ```python
-       class Animal()：
-           number=1                             # 类变量
-           def __init__(self,name,age,color):   # 初始化函数
-               self.name=name
-               self.age=age
-               self.color=color
-           def introduce(self):
-               print(f"Hi,我的名字是{self.name},wp")
-           def sit(self)
-               print(f"我坐下了!")
-           def eat(self):
-               print(f"我正在吃饭")
-           @classmethod                         # 类方法
-           def 
+       class Animal():
+            number=0                               # 类变量
+            def __init__(self,name,age,color):     # 初始化方法
+                self.name=name                     # 实例属性
+                self.age=age                       # 实例属性
+                self.color=color                   # 实例属性
+                self.__secret=None                # 私有实例属性
+            def introduce(self):                   # 实例方法
+                print(f"Hi,我的名字是小动物{self.name},wp")
+            def sit(self):                         # 实例方法
+                print(f"我坐下了!")
+            def eat(self):                         # 实例方法
+                print(f"我正在吃饭")
+            def make_sound(self):                  # 抽象实例方法
+                pass
+            def set_secret(self,secret):           # 私有实例属性对外的接口
+                self.__secret=secret
+            def __tell_the_secret(self):           # 私有实例方法
+                print(f"我的秘密是：{self.__secret}")
+            @classmethod                           # 类方法
+            def change_number(cls):
+                cls.number+=1
+            @staticmethod                          # 静态方法
+            def add(a,b):
+                return (a+b)
+
+       class Cat(Animal):
+          def __init__(self,name,age,color,secret):
+              super().__init__(name,age,color)     # 父类初始化
+              self.change_number()
+              self.set_secret(secret)
+          def make_sound(self):                    # 重新定义的实例方法
+              print("喵喵喵")
+          def introduce(self):                     # 重新定义的实例方法
+              print(f"我的名字是小猫{self.name}")
+          def tell_the_secret(self):               # 新的实例方法
+              print(f"告诉大家，我的秘密是{self.__secret}")
+
+       class Dog(Animal):
+          def __init__(self,name,age,color,secret):
+              super().__init__(name,age,color)     # 父类初始化
+              self.change_number()                 # 私有实例属性
+              self.__secret=secret
+          def make_sound(self):                    # 重新定义的实例方法
+              print("汪汪汪")
+          def introduce(self):                     # 重新定义的实例方法
+              print(f"我的名字是小狗{self.name}")
+          def tell_the_secret(self):               # 新的实例方法
+              print(f"告诉大家，我的秘密是{self.__secret}")
+
+       cat1=Cat("小红",6,"red","我喜欢小绿")
+       cat2=Cat("小绿",7,"green","我喜欢小红")
+       cat3=Cat("小蓝",7,"blue","我是小丑")
+       dog1=Dog("小白",8,"white","我才是小丑")
       ```
+     - **类名**: 一般是开头第一个字母大写的标识符
+     - **类属性**:只与类有关的属性，所有实例对象共享，一般直接写在类定义中的`class 类名():`之下，可以使用类名和实例对象名调用
+     - **类方法**: 用来修改类属性的方法，使用`@classmethod`装饰器定义，指定参数是`cls`,表示类本身，可以使通过类名和实例对象名调用
+     - **静态方法**: 大多数为工具箱类型的方法，即不与类本身或实例对象本身有直接关系，不需要访问任何属性和方法，但是可以实现一定的工具功能，一般使用`@staticmethod`定义，不需要` cls`、`self`参数,可以通过类名或实例对象名调用
+     - **实例属性**: 每个实例化的对象单独具有的属性，可以使用实例对象名访问和修改
+     - **实例方法**: 每个实例化的对象可以调用的方法，指定参数是`self`，表示实例对象本身，可以使用实例对象名调用
+     - **私有属性**: 只能在**类代码块内**访问和修改，同时**无法被子类继承**。一般在属性`attribute`名前加双下划线`__`，其原理是 python 会自动将此属性在类内改名为`_Classname__attribute`形式，导致其在类外使用原来的`__attribute`访问不了，但可以使用`_Classname__attribute`访问。这个改名过程只会在类代码块内发生一次，如果在类代码块外为其增加一个`__attribute`属性，则不会进行改名，依然可以使用该名称访问。私有属性可以是类属性或实例属性
+     - **私有方法**: 只能在**类代码块内**调用，一般在方法名前加双下划线`__`，原理同私有属性。私有方法可以是类方法或实例方法或静态方法
+     - **受保护属性**：只能在**类和子类代码块内**访问和修改(约定)，一般是属性名前加单下划线`_`
+     - **受保护方法**：只能在**类和子类代码块内**调用(约定)，一般是方法名前加单下划线`_`
    - 特点：
-     - 封装
-     - 继承
-     - 多态
+     - 封装:是将属性和方法封装在一个类中，通过访问控制来隐藏内部实现细节，同时提供公共接口供外部使用，确保了数据的安全性与一致性 
+     - 继承:
+     - 多态:
 4. 标准库
    - 内置方法和函数
       - `type()`:查看数据类型
