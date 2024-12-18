@@ -1,8 +1,9 @@
 class A():
-    __Z=1
-    def __init__(self,x):
+    __secret=1
+    def __init__(self,x,y):
         self.__X=x
-    
-a=A(1)
-a.__Y=2
-print(a._A__Z)
+        self.Y=y
+a=1
+print(a.__class__)
+
+
