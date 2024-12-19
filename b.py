@@ -1,8 +1,11 @@
-class A():
+class A:
+    pass
+
+class B(type):
+    pass
+
+class C(metaclass=B):
     pass
 
 
-B=type('B',(),{})
-
-a=A()
-print(B.__class__)
+print(C.__class__)
