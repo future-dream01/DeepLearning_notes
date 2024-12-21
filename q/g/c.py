@@ -1,3 +1,4 @@
+from torch.utils.data import Dataset,DataLoader
 class Animal():
     number=0                               # 类变量
     def __init__(self,name,age,color,b):   # 初始化方法
@@ -54,8 +55,6 @@ cat3=Cat("小蓝",7,"blue","我是小丑",1)
 dog1=Dog("小白",8,"white","我才是小丑",1)
 
 cat1.print_b()
-
-
 
 
 type
