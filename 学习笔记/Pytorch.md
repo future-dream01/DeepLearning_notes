@@ -2,14 +2,14 @@
 关于 pytorch：pytorch 是 torch 开放的 python 接口，两者均由 Facebook 的人工智能小组开发，是开源的深度学习框架，特点是灵活且高效
 ## 数据集准备
 1. 总述：pytorch 数据流如下：先将训练的数据(图片或矩阵)进行打包，创建一个**Dataset 类数据集对象** >>> 利用这个数据集对象创建一个 **Dataloader类数据加载器对象** >>> 使用数据加载器类对象迭代产生训练数据 >>> 经过模型内部进行处理 >>> 模型输出，后续可进行损失计算或直接输出
-2. **Dataset类**数据集对象创建器：
+2. **Dataset类**Map式数据集类型对象：
    - 导入：`from torch.utils.data import Dataset`
-   - 使用方法：
-      - 关于 pytorch 中预先定义的 Dataset 抽象类：
-         - pytorch中的数据集本质上是一个处理索引到具体样本之间映射的类，内部不复杂
-      - 对Datasets做自己的修改：
+   - 关于 pytorch 中预先定义的 Dataset 抽象类：
+     - pytorch中的数据集本质上是一个处理索引到具体样本之间映射的类，内部不复杂
+3. ****
+3. **Dataset类**Map式数据集类型对象：
 
-3. **Dataloader类**数据加载器：
+4. **Dataloader类**数据加载器：
    - 导入：`from torch.utils.data import Dataloader`
    - 创建一个数据加载器对象：`dataloader=DataLoader(dataset,batch_size,shuffle, num_workers) `
       - **dataset**:之前定义好的数据集对象

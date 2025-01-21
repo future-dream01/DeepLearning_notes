@@ -398,13 +398,14 @@
        - `__doc__`：对于类型对象，返回其的文档字符串
        - `__name__`：对于类型对象，返回其的名称
        - `__bases__`：对于类型对象，返回其所有父类的元组
-
-
+   - 迭代器
 5. 标准库
    - 内置方法和函数
       - `id(object)`:获取对象的内存地址
       - `type(object)`:获取实例对象的类
-      - `len(iterable)`:返回可迭代对象的长度;**iterable**为可迭代对象如列表、元组、字典等
+      - `len(iterable)`:返回可迭代对象的长度;**iterable**为可迭代对象，即由内部实现了__iter__()方法或__getitem__()方法的类型对象实例化而来的实例对象，如列表、元组、字典等
+      - `iter(iterable)`：返回一个迭代器；**iterable**为可迭代对象，即由内部实现了__iter__()方法或__getitem__()方法的类型对象实例化而来的实例对象，如列表、元组、字典等
+      - `next(iterable)`:
       - `sum(list)`:对列表中的元素求和
       - `sorted(iterable, key=None, reverse=False)`:对可迭代对象进行排序；**iterable**为可迭代对象如列表、元组、字典等；**key**：是一个函数选项，用于自定义排序；**reverse**为布尔值，True为降序排序，False为升序排序
       - `complex(a,b)`:创建复数;使用方法：complex(a,b),即创建 a+bj
@@ -439,7 +440,8 @@
 6. 常用的第三方库：
    - **Matplotlib** ：常用的绘图库
      - pyplot模块：
-       - `subplot(row,col,id)`:在一个图形窗口中创建多个子图，**row**、**col**分别是子图排列的行数和列数，**id**为此子图的id
+       - `figure(figsize)`：创建一个图形对象，**figsize**图形对象的尺寸，是一个元组(a,b),表示长为a英寸，宽为b英寸
+       - `subplot(row,col,id)`:在一个图形对象中创建多个子图，**row**、**col**分别是子图排列的行数和列数，**id**为此子图的id
        - `plot(x,y,label,color=None,linestyle='-',marker='o')`:绘制连续二维曲线；**x**为存放x轴数据的列表，**y**为存放y轴数据的列表，(其实也可以只输入一个列表数据，此时plot内部自动将输入列表作为y值，以数据索引为x轴)**label**是对这根曲线的命名,**color**为线的颜色，可指定'r'、'g'、'b'，**linestyle**为线形,'-'为实线，'--'为虚线，**marker**指定数据点的形状，'o'为圆点，'s'为方块
        - `scatter(x,y,label=Nnoe,color=None,marker='o')`:绘制散点图，**x**为存放x轴数据的列表，**y**为存放y轴数据的列表，(这里注意和plot区分：此处必须指定x和y两者，否则无法绘制)**label**是对这根曲线的命名,**color**为线的颜色，可指定'r'、'g'、'b'，**marker**指定数据点的形状，'o'为圆点，'s'为方块，,'*'为星形,'+'为加号,'v'为下三角
        - `hist(x,bins,range=(min,max),density=False,cumulative=False,color=None,edgecolor=None,alpha=None)`：绘制直方图，**x**:输入列表,**bins**：箱的数量，当指定数字时，表示将数据分成几个部分，当指定列表[a,b,c,d,e]时，表示将数据按照[a,b]、[b,c]、[c,d]、[d,e]分组,**range**表示接受的数据范围,形状是一个元组(x,y),表示只有这个范围内的数据才会被包含在直方图内,**density**表示是否绘制频率密度分布，True为是，False为否,**cumulative**表示是否绘制累计直方图，True为是，False为否,**color**为直方图颜色,**edgecolor**为直方图边缘颜色,**alpha**为直方图透明度
