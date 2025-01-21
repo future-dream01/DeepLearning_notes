@@ -54,8 +54,28 @@ cat2=Cat("小绿",7,"green","我喜欢小红",1)
 cat3=Cat("小蓝",7,"blue","我是小丑",1)
 dog1=Dog("小白",8,"white","我才是小丑",1)
 
-cat1.print_b()
 
+class A():
+    def __iter__(self):
+        self.a=1
+        return B()
+    def __next__(self):
+        x=self.a
+        self.a+=1
+        return x
 
-type
-dir()
+class B():
+    def __init__(self):
+        self.a=1
+    def __iter__(self):
+        return self
+    def __next__(self):
+        x=self.a
+        self.a+=1
+        return x
+
+a=A()
+A_iter=iter(a)
+for i in [1,2,3,4]:
+    print(i)
+
