@@ -6,10 +6,7 @@
    - 导入：`from torch.utils.data import Dataset`
    - 关于 pytorch 中预先定义的 Dataset 抽象类：
      - pytorch中的数据集本质上是一个处理索引到具体样本之间映射的类，内部不复杂
-3. ****
-3. **Dataset类**Map式数据集类型对象：
-
-4. **Dataloader类**数据加载器：
+3. **Dataloader类**数据加载器：
    - 导入：`from torch.utils.data import Dataloader`
    - 创建一个数据加载器对象：`dataloader=DataLoader(dataset,batch_size,shuffle, num_workers) `
       - **dataset**:之前定义好的数据集对象
