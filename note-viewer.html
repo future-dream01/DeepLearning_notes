@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>笔记详情 | 我的学习笔记</title>
+  <!-- 引入marked.js库（渲染Markdown） -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- 引入GitHub风格的Markdown样式 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css">
+  <style>
+    body {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+      background-color: #f8f9fa;
+    }
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 45px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 8px 16px;
+      background-color: #0066cc;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+    .back-btn:hover {
+      background-color: #0052a3;
+    }
+    @media (max-width: 767px) {
+      .markdown-body {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 返回主页按钮 -->
+  <a href="index.html" class="back-btn">← 返回笔记主页</a>
+  
+  <!-- 渲染后的Markdown内容会显示在这里 -->
+  <div class="markdown-body" id="note-content"></div>
+
+  <script>
+    // 从URL中获取要加载的Markdown文件名
+    function getUrlParam(name) {
+      const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`);
+      const r = window.location.search.substr(1).match(reg);
+      if (r != null) return decodeURIComponent(r[2]);
+      return null;
+    }
+
+    // 加载并渲染Markdown文件
+    async function renderMarkdown() {
+      const fileName = getUrlParam('file');
+      if (!fileName) {
+        document.getElementById('note-content').innerHTML = '<h2>⚠️ 未找到笔记文件</h2>';
+        return;
+      }
+
+      try {
+        // 加载Markdown文件（路径要和实际存放位置一致）
+        const response = await fetch(`学习笔记/${fileName}`);
+        if (!response.ok) throw new Error('文件不存在');
+        
+        // 获取Markdown文本并转换为HTML
+        const markdownText = await response.text();
+        const htmlContent = marked.parse(markdownText);
+        
+        // 将渲染后的HTML插入到页面中
+        document.getElementById('note-content').innerHTML = htmlContent;
+      } catch (error) {
+        document.getElementById('note-content').innerHTML = `<h2>❌ 加载笔记失败：${error.message}</h2>`;
+      }
+    }
+
+    // 页面加载完成后执行渲染
+    window.onload = renderMarkdown;
+  </script>
+</body>
+</html>
