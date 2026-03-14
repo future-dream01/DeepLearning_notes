@@ -13,7 +13,7 @@
     }
 
     body {
-      max-width: 900px;
+      max-width: 1200px; /* 加宽最大宽度，适配双列布局 */
       margin: 50px auto;
       padding: 0 20px;
       font-family: "Microsoft YaHei", Arial, sans-serif;
@@ -23,16 +23,34 @@
       background-color: #f8f9fa;
     }
 
+    /* 新增：核心布局容器（实现宽屏左右分栏） */
+    .main-container {
+      display: flex;
+      flex-wrap: wrap; /* 窄屏自动换行 */
+      gap: 30px; /* 左右模块间距 */
+    }
+
+    /* 个人信息卡片容器（宽屏占左侧固定宽度） */
+    .profile-container {
+      flex: 0 0 300px; /* 宽屏固定300px宽度，不拉伸不收缩 */
+    }
+
+    /* 笔记模块容器（宽屏占右侧剩余宽度） */
+    .notes-container {
+      flex: 1; /* 占满剩余宽度 */
+    }
+
     /* 个人信息卡片样式 */
     .profile-card {
       display: flex;
-      align-items: center;
+      flex-direction: column; /* 改为纵向布局，更适配窄屏 */
+      align-items: center; /* 居中对齐 */
       background-color: white;
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-      margin-bottom: 40px;
-      gap: 30px;
+      gap: 20px; /* 内部元素间距 */
+      text-align: center; /* 文字居中 */
     }
 
     /* 头像样式 */
@@ -42,17 +60,16 @@
       border-radius: 50%;
       object-fit: cover;
       border: 4px solid #e8f4f8;
-      /* 新增头像阴影，更有层次感 */
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     /* 个人信息文本样式 */
     .profile-info {
-      flex: 1;
+      width: 100%; /* 占满卡片宽度 */
     }
 
     .profile-info h1 {
-      font-size: 28px;
+      font-size: 24px; /* 适配窄卡片，稍缩小字体 */
       color: #2d3748;
       margin-bottom: 10px;
     }
@@ -66,12 +83,13 @@
       border-bottom: 1px solid #f0f4f8;
     }
 
-    /* 联系方式样式（新增） */
+    /* 联系方式样式 */
     .contact-info {
       display: flex;
       flex-wrap: wrap;
       gap: 15px;
       margin-bottom: 15px;
+      justify-content: center; /* 居中排列 */
     }
 
     .contact-item {
@@ -88,7 +106,7 @@
       fill: #0066cc;
     }
 
-    /* 新增：论文链接样式 */
+    /* 论文链接样式 */
     .paper-link {
       display: inline-flex;
       align-items: center;
@@ -98,7 +116,7 @@
       color: white !important;
       border-radius: 6px;
       font-size: 16px;
-      margin-left: 15px;
+      margin: 10px 5px 0;
       transition: all 0.3s ease;
     }
 
@@ -108,7 +126,7 @@
       text-decoration: none;
     }
 
-    /* GitHub链接样式（优化） */
+    /* GitHub链接样式 */
     .github-link {
       display: inline-flex;
       align-items: center;
@@ -118,6 +136,7 @@
       color: white !important;
       border-radius: 6px;
       font-size: 16px;
+      margin: 10px 5px 0;
       transition: all 0.3s ease;
     }
 
@@ -127,19 +146,16 @@
       text-decoration: none;
     }
 
-    /* 目录区域样式 - 核心修改：增加模块间隔 */
+    /* 目录区域样式 */
     .notes-directory {
       background-color: white;
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-      /* 新增：模块底部外边距，实现间隔 */
       margin-bottom: 25px;
-      /* 新增：轻微过渡效果，更现代 */
       transition: transform 0.3s ease;
     }
 
-    /* 鼠标悬浮模块时轻微上浮（可选，增加交互） */
     .notes-directory:hover {
       transform: translateY(-3px);
     }
@@ -177,91 +193,108 @@
       transform: translateX(5px);
     }
 
-    /* 响应式适配 */
-    @media (max-width: 600px) {
+    /* 响应式适配：窄屏（小于900px）上下排列 */
+    @media (max-width: 900px) {
+      .profile-container {
+        flex: 0 0 100%; /* 占满整行 */
+        margin-bottom: 20px; /* 底部间距 */
+      }
+      .notes-container {
+        flex: 0 0 100%; /* 占满整行 */
+      }
       .profile-card {
         flex-direction: column;
         text-align: center;
       }
       .avatar {
-        margin-right: 0;
         margin-bottom: 20px;
       }
-      .contact-info {
-        justify-content: center;
+    }
+
+    /* 超小屏适配（小于600px） */
+    @media (max-width: 600px) {
+      .profile-info h1 {
+        font-size: 22px;
       }
-      .github-link, .paper-link {
-        margin: 10px 5px 0;
+      .notes-directory {
+        padding: 20px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- 个人信息卡片 -->
-  <div class="profile-card">
-    <!-- 头像 -->
-    <img src="图片/头像.jpg" alt="我的头像" class="avatar">
-    
-    <!-- 个人信息 -->
-    <div class="profile-info">
-      <h1>TecShark的个人学习笔记</h1>
-      <!-- 个性签名 -->
-      <p class="signature">拥抱幻想 进入真实 武装思想 投身实践</p>
-      
-      <!-- 联系方式邮箱 -->
-      <div class="contact-info">
-        <div class="contact-item">
-          <!-- 邮箱图标（SVG矢量，无图片依赖） -->
-          <svg viewBox="0 0 24 24">
-            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-          </svg>
-          <span>1561404532@qq.com</span>
+  <!-- 核心布局容器：包裹个人信息 + 笔记模块 -->
+  <div class="main-container">
+    <!-- 个人信息容器（左侧） -->
+    <div class="profile-container">
+      <div class="profile-card">
+        <!-- 头像 -->
+        <img src="图片/头像.jpg" alt="我的头像" class="avatar">
+        
+        <!-- 个人信息 -->
+        <div class="profile-info">
+          <h1>TecShark的个人学习笔记</h1>
+          <!-- 个性签名 -->
+          <p class="signature">拥抱幻想 进入真实 武装思想 投身实践</p>
+          
+          <!-- 联系方式邮箱 -->
+          <div class="contact-info">
+            <div class="contact-item">
+              <!-- 邮箱图标（SVG矢量） -->
+              <svg viewBox="0 0 24 24">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+              <span>1561404532@qq.com</span>
+            </div>
+          </div>
+
+          <!-- GitHub链接 + 论文链接 -->
+          <a href="https://github.com/future-dream01" class="github-link">
+            🐙 GitHub 主页
+          </a>
+          <a href="https://www.nature.com/articles/s41598-025-07107-1" class="paper-link">
+            📝 已发表论文1
+          </a>
         </div>
       </div>
+    </div>
 
-      <!-- GitHub链接 + 新增论文链接 -->
-      <a href="https://github.com/future-dream01" class="github-link">
-        🐙 GitHub 主页
-      </a>
-      <a href="https://www.nature.com/articles/s41598-025-07107-1" class="paper-link">
-        📝 已发表论文1
-      </a>
+    <!-- 笔记模块容器（右侧） -->
+    <div class="notes-container">
+      <!-- 智能流体 -->
+      <div class="notes-directory">
+        <h2>🌊 智能流体力学</h2>
+        <ul>
+          <li><a href="note-viewer.html?file=智能流体力学/机器学习.md">机器学习笔记</a></li>
+          <li><a href="note-viewer.html?file=智能流体力学/Linux.md">Linux学习笔记</a></li>
+          <li><a href="note-viewer.html?file=智能流体力学/Python.md">Python学习笔记</a></li>
+          <li><a href="note-viewer.html?file=智能流体力学/Pytorch.md">Pytorch学习笔记</a></li>
+          <li><a href="note-viewer.html?file=智能流体力学/Cpp.md">C++学习笔记</a></li>
+          <li><a href="note-viewer.html?file=智能流体力学/Fluent.md">Fluent学习笔记</a></li>
+        </ul>
+      </div>
+
+      <!-- 马克思主义 -->
+      <div class="notes-directory">
+        <h2>🔨🌾 马克思主义</h2>
+        <ul>
+          <li><a href="note-viewer.html?file=马克思主义/Marxist.md">理论框架</a></li>
+          <li><a href="note-viewer.html?file=马克思主义/关于过去、今天、未来这三者之间的矛盾关系.md">关于过去、今天、未来这三者之间的矛盾关系</a></li>
+        </ul>
+      </div>
+
+      <!-- 心理学 -->
+      <div class="notes-directory">
+        <h2>🧠 武志红心理学</h2>
+        <ul>
+          <li><a href="note-viewer.html?file=武志红心理学/深度关系.md">理论框架</a></li>
+          <li><a href="note-viewer.html?file=武志红心理学/关于强大恐惧症.md">关于强大恐惧症</a></li>
+          <li><a href="note-viewer.html?file=武志红心理学/关于完美主义的思考.md">关于完美主义的思考</a></li>
+          <li><a href="note-viewer.html?file=武志红心理学/人为什么会失眠？.md">人为什么会失眠？</a></li>
+          <li><a href="note-viewer.html?file=武志红心理学/精神内耗的底层逻辑.md">精神内耗的底层逻辑</a></li>
+        </ul>
+      </div>
     </div>
   </div>
-
-  <!-- 智能流体 -->
-  <div class="notes-directory">
-    <h2>🌊 智能流体力学</h2>
-    <ul>
-      <li><a href="note-viewer.html?file=智能流体力学/机器学习.md">机器学习笔记</a></li>
-      <li><a href="note-viewer.html?file=智能流体力学/Linux.md">Linux学习笔记</a></li>
-      <li><a href="note-viewer.html?file=智能流体力学/Python.md">Python学习笔记</a></li>
-      <li><a href="note-viewer.html?file=智能流体力学/Pytorch.md">Pytorch学习笔记</a></li>
-      <li><a href="note-viewer.html?file=智能流体力学/Cpp.md">C++学习笔记</a></li>
-      <li><a href="note-viewer.html?file=智能流体力学/Fluent.md">Fluent学习笔记</a></li>
-    </ul>
-  </div>
-
-  <!-- 马克思主义 -->
-  <div class="notes-directory">
-    <h2>🔨🌾 马克思主义</h2>
-    <ul>
-      <li><a href="note-viewer.html?file=马克思主义/Marxist.md">理论框架</a></li>
-      <li><a href="note-viewer.html?file=马克思主义/关于过去、今天、未来这三者之间的矛盾关系.md">关于过去、今天、未来这三者之间的矛盾关系</a></li>
-    </ul>
-  </div>
-
-  <!-- 心理学 -->
-  <div class="notes-directory">
-    <h2>🧠 武志红心理学</h2>
-    <ul>
-      <li><a href="note-viewer.html?file=武志红心理学/深度关系.md">理论框架</a></li>
-      <li><a href="note-viewer.html?file=武志红心理学/关于强大恐惧症.md">关于强大恐惧症</a></li>
-      <li><a href="note-viewer.html?file=武志红心理学/关于完美主义的思考.md">关于完美主义的思考</a></li>
-      <li><a href="note-viewer.html?file=武志红心理学/人为什么会失眠？.md">人为什么会失眠？</a></li>
-      <li><a href="note-viewer.html?file=武志红心理学/精神内耗的底层逻辑.md">精神内耗的底层逻辑</a></li>
-    </ul>
-  </div>
-
 </body>
 </html>
