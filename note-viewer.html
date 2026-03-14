@@ -14,6 +14,7 @@
       margin: 30px auto;
       padding: 0 20px;
       background-color: #f8f9fa;
+      font-family: "Microsoft YaHei", Arial, sans-serif;
     }
     .markdown-body {
       box-sizing: border-box;
@@ -82,6 +83,7 @@
         document.getElementById('note-content').innerHTML = htmlContent;
       } catch (error) {
         document.getElementById('note-content').innerHTML = `<h2>❌ 加载笔记失败：${error.message}</h2>`;
+        return;
       }
     }
 
