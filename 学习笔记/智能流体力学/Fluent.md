@@ -1,4 +1,7 @@
-# Fluent学习笔记
+<h1 align="center">Fluent学习笔记
+
+---
+## 软件操作
 1. 设置
    - 总体设置
       - 

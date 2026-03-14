@@ -1,4 +1,7 @@
-# Python 学习笔记
+<h1 align="center">Python学习笔记
+
+---
+
 ## python 解释器：
 1. 解释器的概述
    -  python 的运行单元是**python 环境**，而python 解释器是一个 python环境的**核心**，环境各种安装的包均依赖于解释器，所以我们一般使用的虚拟环境工具，如 conda 环境，本质上就是对 python 解释器和其附属的所有包进行隔离，每个环境互不影响。python 解释器在计算机中一般位于 python 环境中的 **bin文件夹**
