@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>我的学习笔记主页</title>
+  <title>TecShark的个人学习笔记</title>
   <style>
     /* 全局样式重置和基础设置 */
     * {
@@ -30,8 +30,9 @@
       background-color: white;
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
       margin-bottom: 40px;
+      gap: 30px;
     }
 
     /* 头像样式 */
@@ -41,7 +42,8 @@
       border-radius: 50%;
       object-fit: cover;
       border: 4px solid #e8f4f8;
-      margin-right: 30px;
+      /* 新增头像阴影，更有层次感 */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     /* 个人信息文本样式 */
@@ -59,15 +61,67 @@
       font-size: 16px;
       color: #718096;
       font-style: italic;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #f0f4f8;
+    }
+
+    /* 联系方式样式（新增） */
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
       margin-bottom: 15px;
     }
 
-    /* 目录区域样式 */
+    .contact-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+      color: #4a5568;
+    }
+
+    .contact-item svg {
+      width: 18px;
+      height: 18px;
+      fill: #0066cc;
+    }
+
+    /* GitHub链接样式（优化） */
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background-color: #24292e;
+      color: white !important;
+      border-radius: 6px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .github-link:hover {
+      background-color: #404852;
+      transform: none !important;
+      text-decoration: none;
+    }
+
+    /* 目录区域样式 - 核心修改：增加模块间隔 */
     .notes-directory {
       background-color: white;
       padding: 30px;
       border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+      /* 新增：模块底部外边距，实现间隔 */
+      margin-bottom: 25px;
+      /* 新增：轻微过渡效果，更现代 */
+      transition: transform 0.3s ease;
+    }
+
+    /* 鼠标悬浮模块时轻微上浮（可选，增加交互） */
+    .notes-directory:hover {
+      transform: translateY(-3px);
     }
 
     .notes-directory h2 {
@@ -113,6 +167,9 @@
         margin-right: 0;
         margin-bottom: 20px;
       }
+      .contact-info {
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -124,11 +181,31 @@
     
     <!-- 个人信息 -->
     <div class="profile-info">
-      <h1>TecShark的个人学习笔记主页</h1>
+      <h1>TecShark的个人学习笔记</h1>
       <!-- 个性签名 -->
       <p class="signature">拥抱幻想 进入真实 武装思想 投身实践</p>
+      
+      <!-- 新增：联系方式（邮箱+微信） -->
+      <div class="contact-info">
+        <div class="contact-item">
+          <!-- 邮箱图标（SVG矢量，无图片依赖） -->
+          <svg viewBox="0 0 24 24">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+          <span>tecshark@example.com</span>
+        </div>
+        <div class="contact-item">
+          <!-- 微信图标（SVG矢量） -->
+          <svg viewBox="0 0 24 24">
+            <path d="M18.585 5h-6.444c-.337 0-.615.279-.615.615v1.694c0 .337.278.615.615.615h4.105c1.842 0 3.335 1.493 3.335 3.335v4.105c0 .337.278.615.615.615h1.694c.336 0 .615-.278.615-.615v-4.105C21 8.493 19.507 7 17.665 7h-4.105c-.337 0-.615-.278-.615-.615V5.615c0-.336.278-.615.615-.615h6.444c.336 0 .615.279.615.615v1.694c0 .337-.278.615-.615.615h-4.105c-.959 0-1.739.78-1.739 1.739v1.302c0 .959.78 1.739 1.739 1.739h4.105c1.842 0 3.335-1.493 3.335-3.335v-4.105C21 6.493 19.507 5 17.665 5h-4.105c-.337 0-.615-.278-.615-.615V3.385c0-.336.278-.615.615-.615h6.444c1.96 0 3.555 1.595 3.555 3.555v4.105c0 1.96-1.595 3.555-3.555 3.555h-4.105c-1.96 0-3.555-1.595-3.555-3.555v-4.105c0-1.96 1.595-3.555 3.555-3.555h4.105z"/>
+          </svg>
+          <span>TecShark_WeChat</span>
+        </div>
+      </div>
+
+      <!-- GitHub链接 -->
       <a href="https://github.com/future-dream01" class="github-link">
-        🐙 我的 GitHub 主页
+        🐙 GitHub 主页
       </a>
     </div>
   </div>
@@ -137,7 +214,6 @@
   <div class="notes-directory">
     <h2>🌊 智能流体研究笔记目录</h2>
     <ul>
-      <!-- 链接指向note-viewer.html并传递文件名参数 -->
       <li><a href="note-viewer.html?file=机器学习.md">机器学习笔记</a></li>
       <li><a href="note-viewer.html?file=Python.md">Python学习笔记</a></li>
       <li><a href="note-viewer.html?file=Pytorch.md">Pytorch学习笔记</a></li>
@@ -150,7 +226,6 @@
   <div class="notes-directory">
     <h2>🔨🌾 马克思主义学习笔记</h2>
     <ul>
-      <!-- 链接指向note-viewer.html并传递文件名参数 -->
       <li><a href="note-viewer.html?file=Marxist.md">马克思主义学习笔记</a></li>
     </ul>
   </div>
@@ -159,7 +234,6 @@
   <div class="notes-directory">
     <h2>🧠 心理学学习笔记</h2>
     <ul>
-      <!-- 链接指向note-viewer.html并传递文件名参数 -->
       <li><a href="note-viewer.html?file=认识自己.md">心理学学习笔记</a></li>
     </ul>
   </div>
