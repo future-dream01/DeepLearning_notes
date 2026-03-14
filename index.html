@@ -88,6 +88,26 @@
       fill: #0066cc;
     }
 
+    /* 新增：论文链接样式 */
+    .paper-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background-color: #0066cc;
+      color: white !important;
+      border-radius: 6px;
+      font-size: 16px;
+      margin-left: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .paper-link:hover {
+      background-color: #0052a3;
+      transform: none !important;
+      text-decoration: none;
+    }
+
     /* GitHub链接样式（优化） */
     .github-link {
       display: inline-flex;
@@ -170,6 +190,9 @@
       .contact-info {
         justify-content: center;
       }
+      .github-link, .paper-link {
+        margin: 10px 5px 0;
+      }
     }
   </style>
 </head>
@@ -185,34 +208,30 @@
       <!-- 个性签名 -->
       <p class="signature">拥抱幻想 进入真实 武装思想 投身实践</p>
       
-      <!-- 新增：联系方式（邮箱+微信） -->
+      <!-- 联系方式邮箱 -->
       <div class="contact-info">
         <div class="contact-item">
           <!-- 邮箱图标（SVG矢量，无图片依赖） -->
           <svg viewBox="0 0 24 24">
             <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
           </svg>
-          <span>tecshark@example.com</span>
-        </div>
-        <div class="contact-item">
-          <!-- 微信图标（SVG矢量） -->
-          <svg viewBox="0 0 24 24">
-            <path d="M18.585 5h-6.444c-.337 0-.615.279-.615.615v1.694c0 .337.278.615.615.615h4.105c1.842 0 3.335 1.493 3.335 3.335v4.105c0 .337.278.615.615.615h1.694c.336 0 .615-.278.615-.615v-4.105C21 8.493 19.507 7 17.665 7h-4.105c-.337 0-.615-.278-.615-.615V5.615c0-.336.278-.615.615-.615h6.444c.336 0 .615.279.615.615v1.694c0 .337-.278.615-.615.615h-4.105c-.959 0-1.739.78-1.739 1.739v1.302c0 .959.78 1.739 1.739 1.739h4.105c1.842 0 3.335-1.493 3.335-3.335v-4.105C21 6.493 19.507 5 17.665 5h-4.105c-.337 0-.615-.278-.615-.615V3.385c0-.336.278-.615.615-.615h6.444c1.96 0 3.555 1.595 3.555 3.555v4.105c0 1.96-1.595 3.555-3.555 3.555h-4.105c-1.96 0-3.555-1.595-3.555-3.555v-4.105c0-1.96 1.595-3.555 3.555-3.555h4.105z"/>
-          </svg>
-          <span>TecShark_WeChat</span>
+          <span>1561404532@qq.com</span>
         </div>
       </div>
 
-      <!-- GitHub链接 -->
+      <!-- GitHub链接 + 新增论文链接 -->
       <a href="https://github.com/future-dream01" class="github-link">
         🐙 GitHub 主页
+      </a>
+      <a href="https://www.nature.com/articles/s41598-025-07107-1" class="paper-link">
+        📝 已发表论文1
       </a>
     </div>
   </div>
 
   <!-- 智能流体 -->
   <div class="notes-directory">
-    <h2>🌊 智能流体研究笔记目录</h2>
+    <h2>🌊 智能流体力学</h2>
     <ul>
       <li><a href="note-viewer.html?file=机器学习.md">机器学习笔记</a></li>
       <li><a href="note-viewer.html?file=Python.md">Python学习笔记</a></li>
@@ -224,17 +243,17 @@
 
   <!-- 马克思主义 -->
   <div class="notes-directory">
-    <h2>🔨🌾 马克思主义学习笔记</h2>
+    <h2>🔨🌾 马克思主义</h2>
     <ul>
-      <li><a href="note-viewer.html?file=Marxist.md">马克思主义学习笔记</a></li>
+      <li><a href="note-viewer.html?file=Marxist.md">理论框架</a></li>
     </ul>
   </div>
 
   <!-- 心理学 -->
   <div class="notes-directory">
-    <h2>🧠 心理学学习笔记</h2>
+    <h2>🧠 武志红心理学</h2>
     <ul>
-      <li><a href="note-viewer.html?file=认识自己.md">心理学学习笔记</a></li>
+      <li><a href="note-viewer.html?file=认识自己.md">理论框架</a></li>
     </ul>
   </div>
 
