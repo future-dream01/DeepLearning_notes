@@ -15,6 +15,10 @@
 ## python 环境
 1. python 环境是指python 程序运行所需的一系列功能库的配置，这些库依赖于一个核心的 python 解释器而存在，与解释器捆绑在一起。可以说，python 程序的执行成功与否，一半取决于代码内部逻辑，另一半则取决于 python 环境的配置是否合适。
 2. 关于如何创建与管理 python 环境
+   - **github-desktop(适用于ubuntu20.04)**
+      - 下载：`wget https://github.com/shiftkey/desktop/releases/download/release-3.1.1-linux1/GitHubDesktop-linux-3.1.1-linux1.deb` 
+      - 安装：`sudo dpkg -i GitHubDesktop-linux-3.1.1-linux1.deb`
+      - 如果缺包：`sudo apt -f install -y`
    - **CONDA 环境**：
       - conda 的功能：
          - conda主要被用作 **python 环境管理器**，主要作用是针对不同的项目，创建、管理多个不同的 python 环境，以避免多个项目使用同一环境时会出现的依赖冲突问题
